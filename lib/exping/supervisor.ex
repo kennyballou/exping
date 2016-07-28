@@ -13,6 +13,7 @@ defmodule ExPing.Supervisor do
   @spec init(any) :: no_return
   def init(_) do
     children = [
+      supervisor(Task.Supervisor, [[name: ExPing.Supervisor.Task]])
     ]
 
     supervise(children, strategy: :one_for_one, name: __MODULE__)
